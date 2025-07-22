@@ -39,9 +39,33 @@ public class MainActivity extends AppCompatActivity {
                 });
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
-
             }
+        }); // <-- 리스트 버튼 클릭 & 토스트 팝업 처리
+
+        Button exitButton = (Button) findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+            public void onClick(View v) {
+             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+             builder.setTitle("==종료 알림창==");
+             builder.setMessage("정말로 종료하시겠습니까?")
+            .setCancelable(false)
+                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int i) {
+                             finish();
+                         }
+                     })
+                     .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int i) {
+                             dialog.cancel(); //다이얼 창 끊음
+                         }
+                     });
+                AlertDialog alert = builder.create();
+                alert.setTitle("종료 알림창");
+                alert.show();
+            } // end onClick
         });
         return insets;
         });
